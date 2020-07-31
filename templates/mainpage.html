@@ -1,0 +1,45 @@
+<HTML>
+<Head>
+<Title>Product Reviews</Title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+</Head>
+<Body class = "loggedin">
+<nav class = "navtop">
+	<div>
+	 	<h1>Product Reviews</h1>
+	 	<a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i>Login</a>
+	</div>
+</nav>
+<div class = "content">
+<h2>Upcoming Products</h2>
+</div>
+{% if images|length %}
+<div class="row">
+{% for hist in images %}
+<div class = "column">
+<form action = "/feedback" method = "POST" enctype="multipart/form-data">
+	<div class="card">
+		<br>
+		<img src="{{hist[10]}}" />	
+		<h2>{{hist[2]}}</h2>
+  		<p class="price">Rs. {{ hist[7]}}</p>
+  		<input type="hidden" value = "{{hist[2]}}" name="product_name">
+  		<p>
+  			<input type = "submit" value="Give Review" class = "button">
+  		</p>
+
+	</div>
+</form>
+</div>
+{% endfor %}
+</div>
+{% else %}
+<div class = "content"> 
+	<p> 
+		 No Products are uploaded yet !
+	</p> 
+</div>
+{% endif %}
+</Body>
+</HTML>

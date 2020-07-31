@@ -1,0 +1,103 @@
+<HTML>
+<Head>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+<Title>Give Feedback</Title>
+</Head>
+<Body class = "loggedin">
+<nav class = "navtop">
+	<div>
+	 	<h1>Product Reviews</h1>
+	 	<a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i>Login</a>
+	</div>
+</nav>
+
+<div class = "content">
+<h2>{{ data['product_name'] }} Reviews</h2>
+</div>
+<div class="split left">
+<center>
+	<img src="{{data['product_path']}}" width="50%" height = "50%"/>
+</center>
+<table width="100%" border="0" style= "padding:10% 0 5% 30%;">
+<tr>
+	<td width = "40%">Product Name </td>
+	<td width = "60%">: {{ data['product_name'] }} </td>
+</tr>
+<tr>
+	<td width = "40%">Manufacture By </td>
+	<td width = "60%">: {{ data['owner'] }} </td>
+</tr>
+<tr>
+	<td width = "40%">Product Size </td>
+	<td width = "60%">: {{ data['product_size'] }} </td>
+</tr>
+<tr>
+	<td width = "40%">Product Color </td>
+	<td width = "60%">: {{ data['product_colour'] }} </td>
+</tr>
+<tr>
+	<td width = "40%">Product Shape </td>
+	<td width = "60%">: {{ data['product_shape'] }} </td>
+</tr>
+<tr>
+	<td width = "40%">Additional Information </td>
+	<td width = "60%">: {{ data['add_info'] }} </td>
+</tr>	
+</table>
+</div>
+
+<div class="split right">
+<form name  = "feedbackForm" action="/" method = "POST" enctype="multipart/form-data">
+<table width="100%" border="0" cellpadding="10">
+<tr>
+	<td width = "40%"><label for="pname">Your Email</label></td>
+	<td width = "60%"><input type="text" id="email" name="useremail" class = "FeedbackText" placeholder = "E.g. abc@gmail.com" onblur = "ValidateEmail()" required></td>
+</tr>
+<tr>
+	<td width = "40%"><label for="productsize">Product Rating</label></td>
+	<td width = "60%">
+			<input type="radio" name="productRating" value="1">1
+			<input type="radio" name="productRating" value="2">2
+			<input type="radio" name="productRating" value="3">3
+			<input type="radio" name="productRating" value="4">4
+			<input type="radio" name="productRating" value="5">5<br>
+	</td>
+</tr>
+<tr>
+	<td width = "40%"><label for="textReview">Enter Your Review</label></td>
+	<td width = "60%"><textarea id="textReview" class = "reviewText" name="ReviewText"></textarea></td>
+</tr>
+<tr>
+	<td width = "40%"><label for="vote">Do You Like The Product ?</label></td>
+	<td width = "60%"><input type="radio" name="vote" value="1">Yes
+			  <input type="radio" name="vote" value="0">No</td>
+</tr>
+</table>
+<br>
+<br>
+            <center>
+            <input type = "hidden" name="product_name" value ="{{ data['product_name'] }}">
+            <input type = "submit" name = "action" value="Submit" class = "submitfeedback" onclick = "submission()">  </center>
+</form> 
+</div>
+<script type="text/javascript">
+	function ValidateEmail() 
+	{
+		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(feedbackForm.email.value))
+  		{
+    			return (true)
+  		}
+    
+    		alert("You have entered an Invalid email address!")
+    		return (false)
+	}
+
+	function submission()
+	{
+		alert("Thanks for your feedback !")
+	}
+
+</script>
+</Body>
+</HTML>

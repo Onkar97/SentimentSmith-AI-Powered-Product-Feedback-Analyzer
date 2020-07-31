@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h2>Home Page</h2>
+<p>Welcome {{ username }}!</p>
+
+<h2>Uploaded Product</h2>
+<div>
+	{% if tables|length %}
+	<center>
+	
+	<table width="50%" style="padding:10% 0 20% 30%; border-collapse: collapse;border: 1px solid black;" id="myTable">
+	<tr>
+		<th width = "10%" style = "border: 1px solid black;text-align:center;">Name</th>
+		<th width = "10%" style = "border: 1px solid black;text-align:center;">Manufacturer</th>
+		<th width = "10%" style = "border: 1px solid black;text-align:center;">Date</th>
+		<th width = "10%" style = "border: 1px solid black;text-align:center;">Price</th>
+		<th width = "10%" style = "border: 1px solid black;text-align:center;">Action</th>
+		
+	</tr>
+	{% for data in tables %}
+	
+	<tr>
+		<td width="10%" style = "border: 1px solid black;text-align:center;"> {{ data[0]}} </td>
+		<td width="10%" style = "border: 1px solid black;text-align:center;"> {{ data[1]}} </td>
+		<td width="10%" style = "border: 1px solid black;text-align:center;"> {{ data[2]}} </td>
+		<td width="10%" style = "border: 1px solid black;text-align:center;"> {{ data[3]}} </td>
+		<td width="10%" style = "border: 1px solid black; text-align:center;">
+		<button class = "buttonR" onclick="window.location='{{url_for('drops', product_name=data[0])}}';">Remove</button></td>
+	
+	</tr>
+	{% endfor %}
+	</table>
+	</center>
+	{% else %}
+	<p> 
+		 No Products are uploaded yet !
+	</p> 
+	{% endif %}
+</div>
+<h2>Add Product</h2>
+<div>
+<form action = "/productform" enctype="multipart/form-data">  
+            <center>
+            <input type = "submit" value="Add" class = "upload">  </center>
+</form>  
+</div>
+{% endblock %}

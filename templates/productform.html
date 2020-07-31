@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block title %}Product Form{% endblock %}
+
+{% block content %}
+
+<h2>Product Details</h2>
+
+<div>
+<p> <b>{{ msg }}</b> </p>
+<form action = "/productform" method = "post" enctype="multipart/form-data">
+<table width="100%" border="0">
+<tr>
+	<td width = "20%"><label for="pname">Product Name</label></td>
+	<td width = "80%"><input type="text" id="pname" name="productname" class = "inputText" placeholder = "E.g. abc" required></td>
+</tr>
+<tr>
+	<td width = "20%"><label for="mname">Manufacture By</label></td>
+	<td width = "80%"><input type="text" id="mname" name="manufacturer" class = "inputText" placeholder = "Company Name" required></td>
+</tr>
+<tr>
+	<td width = "20%"><label for="productsize">Product Size</label></td>
+	<td width = "80%">
+			<input type="radio" name="productsize" value="Small">Small<br>
+			<input type="radio" name="productsize" value="Medium">Medium<br>
+			<input type="radio" name="productsize" value="Large">Large<br>
+	</td>
+</tr>
+<tr>
+	<td width = "20%"><label for="pcolor">Product Colour</label></td>
+	<td width = "80%"><input type="text" id="pcolor" name="productcolour" class = "inputText" placeholder = "E.g. White, Black" required></td>
+</tr>
+<tr>
+	<td width = "20%"><label for="pprice">Product Price</label></td>
+	<td width = "80%"><input type="text" id="pprice" name="productprice" class = "inputText" placeholder = "Price in INR" required></td>
+</tr>
+<tr>
+	<td width = "20%"><label for="pshape">Product Shape</label></td>
+	<td width = "80%"><input type="text" id="pshape" name="productshape" class = "inputText" placeholder = "E.g. Rectangle, Square" required></td>
+</tr>
+<tr>
+	<td width = "20%"><label for="addinfo">Additional Information</label></td>
+	<td width = "80%"><textarea id="addinfo" name="addinformation" ></textarea></td>
+</tr>
+<tr>
+	<td width = "20%"><label for="pimage">Product Image</label></td>
+	<td width = "80%"><input type="file" id="pimage" name="productimage" onmouseout = "filecheck()"required></td>
+</tr>
+</table>
+<br>
+<br>
+            <center>
+            <input type = "submit" value="Submit" class = "upload">  </center>
+</form> 
+</div>
+
+<script type="text/javascript">
+function filecheck()
+{
+	var fileInput = document.getElementById("pimage").files[0];
+	var allowed = "png";
+	var found = false;
+  	if (fileInput.type.match('image/'+ allowed)) {
+    		found = true;
+  	}
+
+	if(!found)
+	{
+		alert("Wrong file type! Accpets only .png files");
+	}
+}
+
+</script>
+
+{% endblock %}

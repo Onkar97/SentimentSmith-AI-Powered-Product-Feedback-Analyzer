@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+<script src="https://kendo.cdn.telerik.com/2017.2.621/js/jquery.min.js"></script>
+ <script src="https://kendo.cdn.telerik.com/2017.2.621/js/jszip.min.js"></script>
+ <script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>
+<h2>Choose Product To See Result</h2>
+<form action = "/view" method = "post" enctype="multipart/form-data">  
+            <center><select name="select_product" class="inputText">
+            	{% for data in list %}
+		<Option value={{ data[0] }}>{{ data[0] }}</Option>
+		{% endfor %}
+		</select>
+             
+            <br>
+            <br>
+            <input type = "submit" value="View" class = "upload">  </center>
+</form>  
+<center>
+<h3> OR </h3>
+</center>
+
+<h2>Upload CSV file of Reviews</h2>
+<form action = "/upload" method = "post" enctype="multipart/form-data">
+	<br>
+	<br>
+	  
+            <center>
+            <input type="text" name="pname" class="inputText" placeholder="Please enter your Product Name" required>
+            <br>
+            <br>
+            <input type="file" name="file"  />
+             
+            <br>
+            <br>
+            <input type = "submit" value="Upload" class = "upload">  </center>
+</form>  
+
+{% endblock %}
